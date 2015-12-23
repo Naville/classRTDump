@@ -23,7 +23,10 @@
 -(void)startDump{
     for(int x=0;x<classList.count;x++){
         NSString* currentClassName=[classList objectAtIndex:x];
-        NSMutableDictionary* methodList=[self methodsForClass:currentClassName];
+        NSMutableDictionary* InfoDict=[NSMutableDictionary dictionary];
+        [InfoDict addEntriesFromDictionary:[self methodsForClass:currentClassName]];
+         [InfoDict addEntriesFromDictionary:[self propertiesForClass:currentClassName]];
+         [InfoDict addEntriesFromDictionary:[self ivarForClass:currentClassName]];
         
     }
 }
@@ -79,7 +82,16 @@
 }
 -(NSMutableDictionary*)ivarForClass:(NSString*)className{
     NSMutableDictionary* returnDict=[NSMutableDictionary dictionary];
-    
+    unsigned int count;
+    Ivar * IvarList=class_copyIvarList(objc_getClass(className.UTF8String), &count);
+    for(int i=0;i<count;i++){
+        Ivar currentIvar=IvarList[i];
+        NSDictionary* ivarInfoDict=[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithUTF8String:ivar_getName(currentIvar)],@"Name", [NSString stringWithUTF8String:ivar_getOffset(currentIvar)],@"Offset",[NSString stringWithUTF8String:ivar_getTypeEncoding(currentIvar)],@"TypeEncoding",nil];
+        [returnDict setObject:ivarInfoDict forKey:[NSString stringWithUTF8String:ivar_getName(currentIvar)]];
+        
+        
+        
+    }
     
     return returnDict;
 }
