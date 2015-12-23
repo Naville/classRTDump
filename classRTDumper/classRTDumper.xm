@@ -3,21 +3,19 @@
 #import <mach-o/ldsyms.h>
 #import <mach-o/dyld.h>
 #import "Dumper.h"
-NSMutableArray* classList=[NSMutableArray array];
-NSMutableArray* protocalList=[NSMutableArray array];
 %ctor{
     //Protocol **objc_copyProtocolList(unsigned int *outCount)
-    
+    NSMutableArray* classList=[NSMutableArray array];
+    NSMutableArray* protocalList=[NSMutableArray array];
+    NSLog(@"classRTDump Loaded");
     unsigned int count;
     const char **classes;
-    Dl_info info;
-    intptr_t Address=_dyld_get_image_vmaddr_slide(0);
-    dladdr(&Address, &info);
-    classes = objc_copyClassNamesForImage(info.dli_fname, &count);
+    classes = objc_copyClassNamesForImage([[[NSBundle mainBundle] executablePath] UTF8String], &count);
     
     for (int i = 0; i < count; i++) {
-        NSLog(@"Class name: %s", classes[i]);
-        [classList addObject:[NSString stringWithCString:classes[i] encoding:NSUTF8StringEncoding]];
+        NSString* className=[NSString stringWithFormat:@"%s",classes[i]];
+        //NSLog(@"Class name: %@",className);
+        [classList addObject:className];
 
         
     }
@@ -26,7 +24,8 @@ NSMutableArray* protocalList=[NSMutableArray array];
     Protocol **Protocols=objc_copyProtocolList(&protocolNumber);
     for(int j=0;j<protocolNumber;j++){
         Protocol* currentProtocal=Protocols[j];
-        NSString* protocalName=[NSString stringWithUTF8String:protocol_getName(currentProtocal)];
+        NSString* protocalName=[NSString stringWithFormat:@"%s",protocol_getName(currentProtocal)];
+       // NSLog(@"ProtocalName:%@",protocalName);
         [protocalList addObject:protocalName];
         
         
@@ -35,6 +34,8 @@ NSMutableArray* protocalList=[NSMutableArray array];
     
     
     Dumper* dumper=[Dumper dumper];
+    //NSLog(@"ClassList:%@",classList);
+    //NSLog(@"ProtocalList:%@",protocalList);
     [dumper setupWithClassList:classList protocalList:protocalList];
     [dumper startDump];
     [dumper OutPutToPath:[NSString stringWithFormat:@"%@/Documents/",NSHomeDirectory()]];

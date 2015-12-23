@@ -1,24 +1,44 @@
-#line 1 "/Users/Naville/Desktop/classRTDumper/classRTDumper/classRTDumper.xm"
+#line 1 "/Volumes/Swap/Development/classRTDumper/classRTDumper/classRTDumper.xm"
 #import <objc/runtime.h>
 #import <dlfcn.h>
 #import <mach-o/ldsyms.h>
 #import <mach-o/dyld.h>
-NSMutableArray* classList=[NSMutableArray array];
+#import "Dumper.h"
 static __attribute__((constructor)) void _logosLocalCtor_6abe01d2(){
     
-    
+    NSMutableArray* classList=[NSMutableArray array];
+    NSMutableArray* protocalList=[NSMutableArray array];
+    NSLog(@"classRTDump Loaded");
     unsigned int count;
     const char **classes;
-    Dl_info info;
-    intptr_t Address=_dyld_get_image_vmaddr_slide(0);
-    dladdr(&Address, &info);
-    classes = objc_copyClassNamesForImage(info.dli_fname, &count);
+    classes = objc_copyClassNamesForImage([[[NSBundle mainBundle] executablePath] UTF8String], &count);
     
     for (int i = 0; i < count; i++) {
-        NSLog(@"Class name: %s", classes[i]);
-        [classList addObject:[NSString stringWithCString:classes[i] encoding:NSUTF8StringEncoding]];
+        NSString* className=[NSString stringWithFormat:@"%s",classes[i]];
+        
+        [classList addObject:className];
 
         
     }
+    free(classes);
+    unsigned int protocolNumber;
+    Protocol **Protocols=objc_copyProtocolList(&protocolNumber);
+    for(int j=0;j<protocolNumber;j++){
+        Protocol* currentProtocal=Protocols[j];
+        NSString* protocalName=[NSString stringWithFormat:@"%s",protocol_getName(currentProtocal)];
+       
+        [protocalList addObject:protocalName];
+        
+        
+    }
+    free(Protocols);
+    
+    
+    Dumper* dumper=[Dumper dumper];
+    
+    
+    [dumper setupWithClassList:classList protocalList:protocalList];
+    [dumper startDump];
+    [dumper OutPutToPath:[NSString stringWithFormat:@"%@/Documents/",NSHomeDirectory()]];
     
 }
