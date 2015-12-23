@@ -30,9 +30,11 @@
     for(int x=0;x<classList.count;x++){
         NSString* currentClassName=[classList objectAtIndex:x];
         NSMutableDictionary* InfoDict=[NSMutableDictionary dictionary];
-        [InfoDict addEntriesFromDictionary:[self methodsForClass:currentClassName]];
-         [InfoDict addEntriesFromDictionary:[self propertiesForClass:currentClassName]];
-         [InfoDict addEntriesFromDictionary:[self ivarForClass:currentClassName]];
+        [InfoDict setObject:[self methodsForClass:currentClassName] forKey:@"Methods"];
+         [InfoDict setObject:[self propertiesForClass:currentClassName] forKey:@"Properties"];
+         [InfoDict setObject:[self ivarForClass:currentClassName] forKey:@"Ivar"];
+        NSString* SuperClass=[NSString stringWithFormat:@"%s",class_getName(class_getSuperclass(objc_getClass(currentClassName.UTF8String)))];
+        [InfoDict setObject:SuperClass forKey:@"SuperClass"];
         [InfoDict addEntriesFromDictionary:[self protocalForClass:currentClassName]];
         [dumpedClasses setObject:InfoDict forKey:currentClassName];
         
@@ -51,6 +53,8 @@
             [curMethodList setObject:TypeSignature forKey:MethodName];
             
         }
+        NSDictionary* ProtocalofProtocal=[self protocalForClass:currentProtocalName];
+        [curMethodList addEntriesFromDictionary:ProtocalofProtocal];
         [dumpedProtocals setObject:curMethodList forKey:currentProtocalName];
         
         
@@ -66,7 +70,16 @@
         Method method = methods[i];
         NSString* methodName=[NSString stringWithFormat:@"%s",sel_getName(method_getName(method))];
         NSString* TypeEncoding=[NSString stringWithFormat:@"%s",method_getTypeEncoding(method)];
-        [returnDictionary setObject:TypeEncoding forKey:methodName];
+        NSString* ReturnType=[NSString  stringWithFormat:@"%s",method_copyReturnType(method)];
+        NSMutableArray* ArgumentTypeArray=[NSMutableArray array];
+        int argumentNum=method_getNumberOfArguments(method);
+        for(int Q=0;Q<argumentNum;Q++){
+            NSString* ArgType=[NSString stringWithFormat:@"%s",method_copyArgumentType(method,Q)];
+            [ArgumentTypeArray addObject:ArgType];
+            
+        }
+        NSDictionary* methodDict=[NSDictionary dictionaryWithObjectsAndKeys:TypeEncoding,@"TypeEncoding" ,ReturnType,@"ReturnType",ArgumentTypeArray,@"ArgumentType",nil];
+        [returnDictionary setObject:methodDict forKey:methodName];
     }
     free(methods);
     Method *methods2 = class_copyMethodList(objc_getMetaClass(className.UTF8String), &methodCount);
@@ -74,7 +87,19 @@
         Method method = methods2[i];
         NSString* methodName=[NSString stringWithFormat:@"%s",sel_getName(method_getName(method))];
         NSString* TypeEncoding=[NSString stringWithFormat:@"%s",method_getTypeEncoding(method)];
-        [returnDictionary setObject:TypeEncoding forKey:methodName];
+        NSString* ReturnType=[NSString  stringWithFormat:@"%s",method_copyReturnType(method)];
+        NSMutableArray* ArgumentTypeArray=[NSMutableArray array];
+        int argumentNum=method_getNumberOfArguments(method);
+        for(int Q=0;Q<argumentNum;Q++){
+             NSString* ArgType=[NSString stringWithFormat:@"%s",method_copyArgumentType(method,Q)];
+            [ArgumentTypeArray addObject:ArgType];
+            
+        }
+        
+        
+        
+        NSDictionary* methodDict=[NSDictionary dictionaryWithObjectsAndKeys:TypeEncoding,@"TypeEncoding" ,ReturnType,@"ReturnType",ArgumentTypeArray,@"ArgumentType",nil];
+        [returnDictionary setObject:methodDict forKey:methodName];
 
     }
     free(methods2);
