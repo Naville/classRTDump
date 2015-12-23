@@ -1,0 +1,365 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FA34C8781C2A24780023A649 /* Dumper.h in Headers */ = {isa = PBXBuildFile; fileRef = FA34C8761C2A24780023A649 /* Dumper.h */; };
+		FA34C8791C2A24780023A649 /* Dumper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA34C8771C2A24780023A649 /* Dumper.m */; };
+		FA4DE18A1C2A211300285845 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4DE1891C2A211300285845 /* Foundation.framework */; };
+		FA4DE1951C2A211300285845 /* classRTDumper.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA4DE1941C2A211300285845 /* classRTDumper.mm */; };
+		FA4DE1A01C2A214A00285845 /* libsubstrate.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4DE19F1C2A214A00285845 /* libsubstrate.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FA34C8761C2A24780023A649 /* Dumper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dumper.h; sourceTree = "<group>"; };
+		FA34C8771C2A24780023A649 /* Dumper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dumper.m; sourceTree = "<group>"; };
+		FA4DE1861C2A211300285845 /* classRTDumper.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = classRTDumper.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA4DE1891C2A211300285845 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FA4DE18E1C2A211300285845 /* control.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = control.txt; path = Package/DEBIAN/control.txt; sourceTree = "<group>"; };
+		FA4DE18F1C2A211300285845 /* control */ = {isa = PBXFileReference; lastKnownFileType = text; name = control; path = Package/DEBIAN/control; sourceTree = "<group>"; };
+		FA4DE1911C2A211300285845 /* PackageVersion.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PackageVersion.plist; sourceTree = "<group>"; };
+		FA4DE1921C2A211300285845 /* classRTDumper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "classRTDumper-Prefix.pch"; sourceTree = "<group>"; };
+		FA4DE1931C2A211300285845 /* classRTDumper.xm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = classRTDumper.xm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		FA4DE1941C2A211300285845 /* classRTDumper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = classRTDumper.mm; sourceTree = "<group>"; };
+		FA4DE1991C2A211300285845 /* classRTDumper.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = classRTDumper.plist; path = Package/Library/MobileSubstrate/DynamicLibraries/classRTDumper.plist; sourceTree = "<group>"; };
+		FA4DE19F1C2A214A00285845 /* libsubstrate.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsubstrate.dylib; path = ../../../../opt/iOSOpenDev/lib/libsubstrate.dylib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FA4DE1821C2A211300285845 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA4DE1A01C2A214A00285845 /* libsubstrate.dylib in Frameworks */,
+				FA4DE18A1C2A211300285845 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FA4DE17B1C2A211300285845 = {
+			isa = PBXGroup;
+			children = (
+				FA4DE18B1C2A211300285845 /* classRTDumper */,
+				FA4DE1881C2A211300285845 /* Frameworks */,
+				FA4DE1871C2A211300285845 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FA4DE1871C2A211300285845 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FA4DE1861C2A211300285845 /* classRTDumper.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FA4DE1881C2A211300285845 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FA4DE19F1C2A214A00285845 /* libsubstrate.dylib */,
+				FA4DE1891C2A211300285845 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FA4DE18B1C2A211300285845 /* classRTDumper */ = {
+			isa = PBXGroup;
+			children = (
+				FA4DE1931C2A211300285845 /* classRTDumper.xm */,
+				FA4DE1941C2A211300285845 /* classRTDumper.mm */,
+				FA34C8761C2A24780023A649 /* Dumper.h */,
+				FA34C8771C2A24780023A649 /* Dumper.m */,
+				FA4DE18C1C2A211300285845 /* Package */,
+				FA4DE1901C2A211300285845 /* Supporting Files */,
+			);
+			path = classRTDumper;
+			sourceTree = "<group>";
+		};
+		FA4DE18C1C2A211300285845 /* Package */ = {
+			isa = PBXGroup;
+			children = (
+				FA4DE18D1C2A211300285845 /* DEBIAN */,
+				FA4DE1961C2A211300285845 /* Library */,
+			);
+			name = Package;
+			sourceTree = "<group>";
+		};
+		FA4DE18D1C2A211300285845 /* DEBIAN */ = {
+			isa = PBXGroup;
+			children = (
+				FA4DE18E1C2A211300285845 /* control.txt */,
+				FA4DE18F1C2A211300285845 /* control */,
+			);
+			name = DEBIAN;
+			sourceTree = "<group>";
+		};
+		FA4DE1901C2A211300285845 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FA4DE1911C2A211300285845 /* PackageVersion.plist */,
+				FA4DE1921C2A211300285845 /* classRTDumper-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FA4DE1961C2A211300285845 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				FA4DE1971C2A211300285845 /* MobileSubstrate */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+		FA4DE1971C2A211300285845 /* MobileSubstrate */ = {
+			isa = PBXGroup;
+			children = (
+				FA4DE1981C2A211300285845 /* DynamicLibraries */,
+			);
+			name = MobileSubstrate;
+			sourceTree = "<group>";
+		};
+		FA4DE1981C2A211300285845 /* DynamicLibraries */ = {
+			isa = PBXGroup;
+			children = (
+				FA4DE1991C2A211300285845 /* classRTDumper.plist */,
+			);
+			name = DynamicLibraries;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		FA4DE1831C2A211300285845 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA34C8781C2A24780023A649 /* Dumper.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		FA4DE1851C2A211300285845 /* classRTDumper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA4DE19C1C2A211300285845 /* Build configuration list for PBXNativeTarget "classRTDumper" */;
+			buildPhases = (
+				FA4DE1801C2A211300285845 /* ShellScript */,
+				FA4DE1811C2A211300285845 /* Sources */,
+				FA4DE1821C2A211300285845 /* Frameworks */,
+				FA4DE1831C2A211300285845 /* Headers */,
+				FA4DE1841C2A211300285845 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = classRTDumper;
+			productName = classRTDumper;
+			productReference = FA4DE1861C2A211300285845 /* classRTDumper.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FA4DE17C1C2A211300285845 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				TargetAttributes = {
+					FA4DE1851C2A211300285845 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+				};
+			};
+			buildConfigurationList = FA4DE17F1C2A211300285845 /* Build configuration list for PBXProject "classRTDumper" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = FA4DE17B1C2A211300285845;
+			productRefGroup = FA4DE1871C2A211300285845 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FA4DE1851C2A211300285845 /* classRTDumper */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FA4DE1801C2A211300285845 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/opt/iOSOpenDev/bin/iosod --xcbp-logos";
+		};
+		FA4DE1841C2A211300285845 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/opt/iOSOpenDev/bin/iosod --xcbp";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FA4DE1811C2A211300285845 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA34C8791C2A24780023A649 /* Dumper.m in Sources */,
+				FA4DE1951C2A211300285845 /* classRTDumper.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		FA4DE19A1C2A211300285845 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(iOSOpenDevPath)/frameworks/**",
+					"$(SDKROOT)/System/Library/PrivateFrameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(iOSOpenDevPath)/include/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LIBRARY_SEARCH_PATHS = "$(iOSOpenDevPath)/lib/**";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = NO;
+				iOSOpenDevPath = /opt/iOSOpenDev;
+			};
+			name = Debug;
+		};
+		FA4DE19B1C2A211300285845 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(iOSOpenDevPath)/frameworks/**",
+					"$(SDKROOT)/System/Library/PrivateFrameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(iOSOpenDevPath)/include/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LIBRARY_SEARCH_PATHS = "$(iOSOpenDevPath)/lib/**";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				iOSOpenDevPath = /opt/iOSOpenDev;
+			};
+			name = Release;
+		};
+		FA4DE19D1C2A211300285845 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "classRTDumper/classRTDumper-Prefix.pch";
+				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/iOSOpenDev/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				iOSOpenDevBuildPackageOnAnyBuild = NO;
+				iOSOpenDevCopyOnBuild = NO;
+				iOSOpenDevDevice = "";
+				iOSOpenDevInstallOnAnyBuild = NO;
+				iOSOpenDevInstallOnProfiling = YES;
+				iOSOpenDevRespringOnInstall = YES;
+				iOSOpenDevUsePackageVersionPList = YES;
+			};
+			name = Debug;
+		};
+		FA4DE19E1C2A211300285845 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "classRTDumper/classRTDumper-Prefix.pch";
+				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/iOSOpenDev/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				iOSOpenDevBuildPackageOnAnyBuild = NO;
+				iOSOpenDevCopyOnBuild = NO;
+				iOSOpenDevDevice = "";
+				iOSOpenDevInstallOnAnyBuild = NO;
+				iOSOpenDevInstallOnProfiling = YES;
+				iOSOpenDevRespringOnInstall = YES;
+				iOSOpenDevUsePackageVersionPList = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FA4DE17F1C2A211300285845 /* Build configuration list for PBXProject "classRTDumper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA4DE19A1C2A211300285845 /* Debug */,
+				FA4DE19B1C2A211300285845 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA4DE19C1C2A211300285845 /* Build configuration list for PBXNativeTarget "classRTDumper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA4DE19D1C2A211300285845 /* Debug */,
+				FA4DE19E1C2A211300285845 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FA4DE17C1C2A211300285845 /* Project object */;
+}

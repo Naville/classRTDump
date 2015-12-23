@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'classRTDumper' target in the 'classRTDumper' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
