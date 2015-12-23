@@ -5,7 +5,7 @@
 #import "Dumper.h"
 NSMutableArray* classList=[NSMutableArray array];
 %ctor{
-    
+    //Protocol **objc_copyProtocolList(unsigned int *outCount)
     
     unsigned int count;
     const char **classes;

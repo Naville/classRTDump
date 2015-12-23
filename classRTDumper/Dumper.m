@@ -7,6 +7,7 @@
 //
 
 #import "Dumper.h"
+//OBJC_EXPORT struct objc_method_description *method_getDescription(Method m) __OSX_AVAILABLE_STARTING(__MAC_10_5, __IPHONE_2_0);
 
 @implementation Dumper{
     NSArray* classList;
@@ -94,5 +95,19 @@
     }
     
     return returnDict;
+}
+-(NSMutableDictionary*)protocalForClass:(NSString*)className{
+    NSMutableDictionary* ReturnDict=[NSMutableDictionary dictionary];
+    NSMutableArray* protoList=[NSMutableArray array];
+    unsigned int count;
+    Protocol **protocalList=class_copyProtocolList(objc_getClass(className.UTF8String), &count);
+    for(int i=0;i<count;i++){
+        NSString* protoName=[NSString stringWithUTF8String:protocol_getName(protocalList[i])];
+        [protoList addObject:protoName];
+        
+    }
+    
+    [ReturnDict setObject:protoList forKey:@"Protocal"];
+    return ReturnDict;
 }
 @end
