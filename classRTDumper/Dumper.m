@@ -38,8 +38,7 @@
         [returnDictionary setObject:TypeEncoding forKey:methodName];
     }
     free(methods);
-    Class BS=NSClassFromString(className);
-    Method *methods2 = class_copyMethodList(BS, &methodCount);
+    Method *methods2 = class_copyMethodList(objc_getMetaClass(className.UTF8String), &methodCount);
     for (unsigned int i = 0; i < methodCount; i++) {
         Method method = methods2[i];
         NSString* methodName=[NSString stringWithFormat:@"%s",sel_getName(method_getName(method))];
