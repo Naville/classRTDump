@@ -51,4 +51,36 @@
     return returnDictionary;
     
 }
+-(NSMutableDictionary*)propertiesForClass:(NSString*)className{
+    NSMutableDictionary* returnDictionary=[NSMutableDictionary dictionary];
+    unsigned int count;
+    objc_property_t *properties = class_copyPropertyList(objc_getClass(className.UTF8String), &count);
+    for (int i = 0; i < count; i++)
+    {
+        objc_property_t property = properties[i];
+        unsigned int attributecount;
+        NSString *name = [NSString stringWithUTF8String:property_getName(property)];
+        objc_property_attribute_t *attributes=property_copyAttributeList(property,&attributecount);
+        NSMutableString* attriCombinedString=[NSMutableString string];
+        for(int j=0;j<attributecount;j++){
+            objc_property_attribute_t attr=attributes[j];
+            NSString* attriString=[NSString stringWithUTF8String:attr.name];
+            [attriCombinedString appendString:attriString];
+            
+            
+        }
+        free(attributes);
+        [returnDictionary setObject:attriCombinedString forKey:name];
+    }
+    
+    free(properties);
+    NSLog(@"%@",returnDictionary);
+    return returnDictionary;
+}
+-(NSMutableDictionary*)ivarForClass:(NSString*)className{
+    NSMutableDictionary* returnDict=[NSMutableDictionary dictionary];
+    
+    
+    return returnDict;
+}
 @end
