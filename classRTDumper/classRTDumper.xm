@@ -4,6 +4,7 @@
 #import <mach-o/dyld.h>
 #import "Dumper.h"
 NSMutableArray* classList=[NSMutableArray array];
+NSMutableArray* protocalList=[NSMutableArray array];
 %ctor{
     //Protocol **objc_copyProtocolList(unsigned int *outCount)
     
@@ -20,7 +21,22 @@ NSMutableArray* classList=[NSMutableArray array];
 
         
     }
+    free(classes);
+    unsigned int protocolNumber;
+    Protocol **Protocols=objc_copyProtocolList(&protocolNumber);
+    for(int j=0;j<protocolNumber;j++){
+        Protocol* currentProtocal=Protocols[j];
+        NSString* protocalName=[NSString stringWithUTF8String:protocol_getName(currentProtocal)];
+        [protocalList addObject:protocalName];
+        
+        
+    }
+    free(Protocols);
+    
+    
     Dumper* dumper=[Dumper dumper];
-    [dumper setupWithList:classList];
+    [dumper setupWithClassList:classList protocalList:protocalList];
+    [dumper startDump];
+    [dumper OutPutToPath:[NSString stringWithFormat:@"%@/Documents/",NSHomeDirectory()]];
     
 }

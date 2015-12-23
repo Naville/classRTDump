@@ -7,18 +7,21 @@
 //
 
 #import "Dumper.h"
-//OBJC_EXPORT struct objc_method_description *method_getDescription(Method m) __OSX_AVAILABLE_STARTING(__MAC_10_5, __IPHONE_2_0);
 
 @implementation Dumper{
     NSArray* classList;
-    NSMutableArray* dumpedClasses;
+    NSMutableDictionary* dumpedClasses;
+    NSArray* ProtocalList;
+     NSMutableDictionary* dumpedProtocals;
 }
 +(id)dumper{
     return [[self alloc] init];
 }
--(void)setupWithList:(NSArray*)List{
-    self->classList=[NSMutableArray arrayWithArray:List];
-    self->dumpedClasses=[NSMutableArray array];
+-(void)setupWithClassList:(NSArray*)classInputList protocalList:(NSArray*)InputprotocalList{
+    self->classList=[NSMutableArray arrayWithArray:classInputList];
+    self->ProtocalList=[NSMutableArray arrayWithArray:InputprotocalList];
+    self->dumpedClasses=[NSMutableDictionary dictionary];
+    self->dumpedProtocals=[NSMutableDictionary dictionary];
     
 }
 -(void)startDump{
@@ -28,8 +31,28 @@
         [InfoDict addEntriesFromDictionary:[self methodsForClass:currentClassName]];
          [InfoDict addEntriesFromDictionary:[self propertiesForClass:currentClassName]];
          [InfoDict addEntriesFromDictionary:[self ivarForClass:currentClassName]];
+        [InfoDict addEntriesFromDictionary:[[self protocalForClass:currentClassName] objectForKey:@"Protocal"]];
+        [dumpedClasses setObject:InfoDict forKey:currentClassName];
         
     }
+    for(int j=0;j<ProtocalList.count;j++){
+        NSString* currentProtocalName=[ProtocalList objectAtIndex:j];
+        Protocol * currentProtocal=objc_getProtocol(currentProtocalName.UTF8String);
+        unsigned int ProtocalMethodCount;
+        struct objc_method_description * protocalMethodList=protocol_copyMethodDescriptionList(currentProtocal,NO, YES,&ProtocalMethodCount);
+        NSMutableDictionary* curMethodList=[NSMutableDictionary dictionary];
+        for(int k=0;k<ProtocalMethodCount;k++){
+            struct objc_method_description currentMethod=protocalMethodList[k];
+            NSString* MethodName=[NSString stringWithString:NSStringFromSelector(currentMethod.name)];
+            NSString* TypeSignature=[NSString stringWithUTF8String:currentMethod.types];
+            [curMethodList setObject:TypeSignature forKey:MethodName];
+            
+        }
+        [dumpedProtocals setObject:curMethodList forKey:currentProtocalName];
+        
+        
+    }
+    
 }
 -(NSMutableDictionary*)methodsForClass:(NSString*)className{
     NSMutableDictionary* returnDictionary=[NSMutableDictionary dictionary];
@@ -109,5 +132,10 @@
     
     [ReturnDict setObject:protoList forKey:@"Protocal"];
     return ReturnDict;
+}
+-(void)OutPutToPath:(NSString*)Path{
+    [dumpedClasses writeToFile:[Path stringByAppendingString:@"/Classes.plist"] atomically:YES];
+    [dumpedProtocals writeToFile:[Path stringByAppendingString:@"/Protocals.plist"]  atomically:YES];
+    
 }
 @end

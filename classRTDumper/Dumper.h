@@ -14,5 +14,7 @@
 
 @interface Dumper : NSObject
 +(id)dumper;
--(void)setupWithList:(NSArray*)List;
+-(void)setupWithClassList:(NSArray*)classList protocalList:(NSArray*)protocalList;
+-(void)startDump;
+-(void)OutPutToPath:(NSString*)Path;
 @end
