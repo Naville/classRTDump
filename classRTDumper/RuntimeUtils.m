@@ -10,6 +10,12 @@
 #import <mach-o/dyld.h>
 #import <mach-o/getsect.h>
 #import "CocoaSecurity.h"
+#import <mach/mach_traps.h>
+#import <mach/mach.h>
+#import <mach/vm_map.h>
+#import <dlfcn.h>
+#import <TargetConditionals.h>
+#import "ObjcDefines.pch"
 #define ProtocalRange NSMakeRange(0,sizeof(struct objc_protocol_t*))
 #define Arch64Base 0x100000000
 #define Arch32Base 0
@@ -39,8 +45,12 @@
         NSData* currentProtocalData=[protoListData subdataWithRange:ProtocalRange];
         unsigned long long currentProtoAddress=[self addressForData:currentProtocalData]+_dyld_get_image_vmaddr_slide(0);
         [protoListData replaceBytesInRange:ProtocalRange withBytes:""];
+        NSData* ProtoData=[self dataFromAddress:currentProtoAddress length:sizeof(struct objc_protocol_t)];
+//
+        
+        
+        
 
-#error Need To Fetch the memory at runtime
         
         
     }
@@ -68,4 +78,31 @@
     return Address-Arch32Base;
 #endif
     }
+
++(NSData*)dataFromAddress:(unsigned long long)address length:(unsigned long long)length{
+    NSData* returnData;
+//#ifdef TARGET_OS_IPHONE
+    pointer_t buf;
+    uint32_t sz;
+    
+    task_t task;
+    
+    if(vm_protect(task, (vm_address_t)address,length, NO, VM_PROT_READ | VM_PROT_WRITE | VM_PROT_COPY)!=KERN_SUCCESS){
+        NSLog(@"Mach VM RWC Permission Failed");
+        exit(255);
+        
+        
+    }
+    if (vm_read(task,address,length, &buf, &sz) != KERN_SUCCESS) {
+        NSLog(@"Mach VM Read Failed");
+        exit(255);
+
+    }
+    returnData=[NSData dataWithBytes:buf length:sz];
+//#elif TARGET_OS_MAC
+    
+//#endif
+    return returnData;
+}
+
 @end
