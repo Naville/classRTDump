@@ -19,9 +19,11 @@
 #import "ObjcDefines.pch"
 #define Arch64Base 0x100000000
 #define Arch32Base 0
-typedef struct protocol_t **(ProtocalList) (struct mach_header* hi, size_t *count);
-typedef ProtocalList* _getObjc2ProtocolList;
-
+#ifdef __LP64__
+struct protocol_t ** (*_getObjc2ProtocolList)(const struct mach_header_64* hi, size_t *count);
+#else
+struct protocol_t ** (*_getObjc2ProtocolList)(const struct mach_header* hi, size_t *count);
+#endif
 @implementation RuntimeUtils
 +(NSData*)dataForSegmentName:(NSString*)Segname SectName:(NSString*)SectName{
     
@@ -46,6 +48,21 @@ typedef ProtocalList* _getObjc2ProtocolList;
     //Pass in mach_header as argument
     //All Deducted from libobjc Sourcecode https://github.com/opensource-apple/objc4/blob/cd5e62a5597ea7a31dccef089317abb3a661c154/runtime/objc-runtime-new.mm
     //https://opensource.apple.com/source/objc4/objc4-646/runtime/objc-file.h
+    const struct mach_header* mainExeHeader=_dyld_get_image_header(0);
+    size_t count;
+    void* handle = dlopen(0, RTLD_GLOBAL | RTLD_NOW);
+#ifdef __LP64__
+    _getObjc2ProtocolList=dlsym(handle, "__Z21_getObjc2ProtocolListPK11header_infoPm");
+#else
+    _getObjc2ProtocolList=dlsym(handle, "__Z21_getObjc2ProtocolListPK14mach_header_64Pm");
+#endif
+    
+    struct protocol_t ** protocalList=_getObjc2ProtocolList(mainExeHeader,&count);
+    for (int i=0; i<count; i++) {
+        NSString* ProtocalName=[NSString stringWithFormat:@"%s",protocalList[i]->name];
+        [ReturnArray addObject:ProtocalName];
+        
+    }
     
     
     

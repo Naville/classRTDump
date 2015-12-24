@@ -171,14 +171,14 @@ struct protocol_list_t
 
 struct protocol_t
 {
-    uint32_t isa;               // id * (32-bit pointer)
-    uint32_t name;              // const char * (32-bit pointer)
-    uint32_t protocols;         // struct protocol_list_t * (32-bit pointer)
-    uint32_t instanceMethods;		// method_list_t * (32-bit pointer)
-    uint32_t classMethods;      // method_list_t * (32-bit pointer)
-    uint32_t optionalInstanceMethods;	// method_list_t * (32-bit pointer)
-    uint32_t optionalClassMethods;	// method_list_t * (32-bit pointer)
-    uint32_t instanceProperties;	// struct objc_property_list * (32-bit pointer)
+    id * isa;               // id * (32-bit pointer)
+    const char * name;              // const char * (32-bit pointer)
+    struct protocol_list_t * protocols;         // struct protocol_list_t * (32-bit pointer)
+    struct method_list_t * instanceMethods;		// method_list_t * (32-bit pointer)
+    struct method_list_t * classMethods;      // method_list_t * (32-bit pointer)
+    struct method_list_t * optionalInstanceMethods;	// method_list_t * (32-bit pointer)
+    struct method_list_t * optionalClassMethods;	// method_list_t * (32-bit pointer)
+    struct objc_property_list * instanceProperties;	// struct objc_property_list * (32-bit pointer)
 };
 
 struct objc_property_list
