@@ -5,9 +5,10 @@
 //  Created by Zhang Naville on 23/12/2015.
 //
 //
+#import "ObjcDefines.pch"
+
 
 #import "Dumper.h"
-
 @implementation Dumper{
     NSArray* classList;
     NSMutableDictionary* dumpedClasses;
@@ -59,6 +60,9 @@
         
         
     }
+    
+    
+    
     NSLog(@"Finished Dumping");
 }
 -(NSMutableDictionary*)methodsForClass:(NSString*)className{

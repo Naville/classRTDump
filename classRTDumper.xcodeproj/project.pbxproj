@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA0C62181C2C83A4005FE67E /* RuntimeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = FA0C62161C2C83A4005FE67E /* RuntimeUtils.h */; };
+		FA0C62191C2C83A4005FE67E /* RuntimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0C62171C2C83A4005FE67E /* RuntimeUtils.m */; };
+		FA0C62381C2C8E59005FE67E /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0C62341C2C8E59005FE67E /* Base64.m */; };
+		FA0C62391C2C8E59005FE67E /* Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = FA0C62351C2C8E59005FE67E /* Base64.h */; };
+		FA0C623A1C2C8E59005FE67E /* CocoaSecurity.h in Headers */ = {isa = PBXBuildFile; fileRef = FA0C62361C2C8E59005FE67E /* CocoaSecurity.h */; };
+		FA0C623B1C2C8E59005FE67E /* CocoaSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0C62371C2C8E59005FE67E /* CocoaSecurity.m */; };
 		FA34C8781C2A24780023A649 /* Dumper.h in Headers */ = {isa = PBXBuildFile; fileRef = FA34C8761C2A24780023A649 /* Dumper.h */; };
 		FA34C8791C2A24780023A649 /* Dumper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA34C8771C2A24780023A649 /* Dumper.m */; };
 		FA4DE18A1C2A211300285845 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4DE1891C2A211300285845 /* Foundation.framework */; };
@@ -15,6 +21,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA0C62151C2C8215005FE67E /* ObjcDefines.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjcDefines.pch; sourceTree = "<group>"; };
+		FA0C62161C2C83A4005FE67E /* RuntimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuntimeUtils.h; sourceTree = "<group>"; };
+		FA0C62171C2C83A4005FE67E /* RuntimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuntimeUtils.m; sourceTree = "<group>"; };
+		FA0C62341C2C8E59005FE67E /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		FA0C62351C2C8E59005FE67E /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		FA0C62361C2C8E59005FE67E /* CocoaSecurity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaSecurity.h; sourceTree = "<group>"; };
+		FA0C62371C2C8E59005FE67E /* CocoaSecurity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CocoaSecurity.m; sourceTree = "<group>"; };
 		FA34C8761C2A24780023A649 /* Dumper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dumper.h; sourceTree = "<group>"; };
 		FA34C8771C2A24780023A649 /* Dumper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dumper.m; sourceTree = "<group>"; };
 		FA4DE1861C2A211300285845 /* classRTDumper.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = classRTDumper.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,6 +55,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA0C623C1C2C8E61005FE67E /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				FA0C62341C2C8E59005FE67E /* Base64.m */,
+				FA0C62351C2C8E59005FE67E /* Base64.h */,
+				FA0C62361C2C8E59005FE67E /* CocoaSecurity.h */,
+				FA0C62371C2C8E59005FE67E /* CocoaSecurity.m */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
 		FA4DE17B1C2A211300285845 = {
 			isa = PBXGroup;
 			children = (
@@ -71,10 +95,14 @@
 		FA4DE18B1C2A211300285845 /* classRTDumper */ = {
 			isa = PBXGroup;
 			children = (
+				FA0C62151C2C8215005FE67E /* ObjcDefines.pch */,
 				FA4DE1931C2A211300285845 /* classRTDumper.xm */,
 				FA4DE1941C2A211300285845 /* classRTDumper.mm */,
 				FA34C8761C2A24780023A649 /* Dumper.h */,
 				FA34C8771C2A24780023A649 /* Dumper.m */,
+				FA0C62161C2C83A4005FE67E /* RuntimeUtils.h */,
+				FA0C62171C2C83A4005FE67E /* RuntimeUtils.m */,
+				FA0C623C1C2C8E61005FE67E /* Libraries */,
 				FA4DE18C1C2A211300285845 /* Package */,
 				FA4DE1901C2A211300285845 /* Supporting Files */,
 			);
@@ -139,7 +167,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA0C62391C2C8E59005FE67E /* Base64.h in Headers */,
 				FA34C8781C2A24780023A649 /* Dumper.h in Headers */,
+				FA0C623A1C2C8E59005FE67E /* CocoaSecurity.h in Headers */,
+				FA0C62181C2C83A4005FE67E /* RuntimeUtils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,8 +260,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA0C62381C2C8E59005FE67E /* Base64.m in Sources */,
 				FA34C8791C2A24780023A649 /* Dumper.m in Sources */,
+				FA0C62191C2C83A4005FE67E /* RuntimeUtils.m in Sources */,
 				FA4DE1951C2A211300285845 /* classRTDumper.mm in Sources */,
+				FA0C623B1C2C8E59005FE67E /* CocoaSecurity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
