@@ -9,6 +9,7 @@
 #import "RuntimeUtils.h"
 #import <mach-o/dyld.h>
 #import <mach-o/getsect.h>
+#import <mach-o/dyld_images.h>
 #import "CocoaSecurity.h"
 #import <mach/mach_traps.h>
 #import <mach/mach.h>
@@ -16,9 +17,10 @@
 #import <dlfcn.h>
 #import <TargetConditionals.h>
 #import "ObjcDefines.pch"
-#define ProtocalRange NSMakeRange(0,sizeof(struct objc_protocol_t*))
 #define Arch64Base 0x100000000
 #define Arch32Base 0
+typedef struct protocol_t **(ProtocalList) (struct mach_header* hi, size_t *count);
+typedef ProtocalList* _getObjc2ProtocolList;
 
 @implementation RuntimeUtils
 +(NSData*)dataForSegmentName:(NSString*)Segname SectName:(NSString*)SectName{
@@ -40,21 +42,13 @@
 }
 +(NSMutableArray*)getProtocalList{
     NSMutableArray* ReturnArray=[NSMutableArray array];
-    NSMutableData* protoListData=[[self dataForSegmentName:@"__DATA" SectName:@"__objc_catlist"] mutableCopy];
-    while (protoListData.length>0) {
-        NSData* currentProtocalData=[protoListData subdataWithRange:ProtocalRange];
-        unsigned long long currentProtoAddress=[self addressForData:currentProtocalData]+_dyld_get_image_vmaddr_slide(0);
-        [protoListData replaceBytesInRange:ProtocalRange withBytes:""];
-        NSData* ProtoData=[self dataFromAddress:currentProtoAddress length:sizeof(struct objc_protocol_t)];
-//
-        
-        
-        
-
-        
-        
-    }
-
+  //extern category_t **_getObjc2CategoryList(const header_info *hi, size_t *count); exists in libobjc.dylib
+    //Pass in mach_header as argument
+    //All Deducted from libobjc Sourcecode https://github.com/opensource-apple/objc4/blob/cd5e62a5597ea7a31dccef089317abb3a661c154/runtime/objc-runtime-new.mm
+    //https://opensource.apple.com/source/objc4/objc4-646/runtime/objc-file.h
+    
+    
+    
     
     return ReturnArray;
 }
