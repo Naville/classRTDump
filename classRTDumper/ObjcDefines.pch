@@ -1,10 +1,9 @@
-//
-//  ObjcDefines.pch
-//  classRTDumper
-//
-//  Created by Zhang Naville on 24/12/2015.
-//
-//
+
+
+
+
+//Extracted From MachOView http://sourceforge.net/p/machoview/
+
 
 #ifndef ObjcDefines_pch
 #define ObjcDefines_pch
