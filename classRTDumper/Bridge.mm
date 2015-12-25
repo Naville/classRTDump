@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "RuntimeUtils.h"
 #import "objcStructs.mm"
-NSArray* methodList(struct method_list_t List);
-NSArray* methodList(struct method_list_t* List){
+NSArray* BridgedmethodList(struct method_list_t* List){
     NSMutableArray* ReturnArray=[NSMutableArray array];
     method_list_t::method_iterator start = List->begin();
     method_list_t::method_iterator end   = List->end();

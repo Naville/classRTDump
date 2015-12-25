@@ -18,9 +18,10 @@
 #import <objc/runtime.h>
 #import <TargetConditionals.h>
 #import "ObjcDefines.pch"
-#import "Bridge.mm"
+#import "objcStructs.mm"
 #define Arch64Base 0x100000000
 #define Arch32Base 0
+extern NSArray* BridgedmethodList(struct method_list_t* List);
 @implementation RuntimeUtils
 +(NSData*)dataForSegmentName:(NSString*)Segname SectName:(NSString*)SectName{
     
@@ -69,7 +70,7 @@
         struct method_list_t *classMethList=Cur->classMethods;
         struct method_list_t *InstMethList=Cur->instanceMethods;
        
-          [ReturnArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:className,catName,methodList(classMethList),@"ClassMethod", methodList(InstMethList),@"InstanceMethod",nil]];
+          [ReturnArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:className,catName,BridgedmethodList(classMethList),@"ClassMethod", BridgedmethodList(InstMethList),@"InstanceMethod",nil]];
 
         
         
