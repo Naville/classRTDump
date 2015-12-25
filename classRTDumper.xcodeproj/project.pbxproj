@@ -352,6 +352,7 @@
 					"-std=c++11",
 					"-stdlib=libc++",
 				);
+				OTHER_LDFLAGS = "-Wl,-segalign,4000";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				iOSOpenDevBuildPackageOnAnyBuild = NO;
 				iOSOpenDevCopyOnBuild = NO;
@@ -383,6 +384,7 @@
 					"-std=c++11",
 					"-stdlib=libc++",
 				);
+				OTHER_LDFLAGS = "-Wl,-segalign,4000";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				iOSOpenDevBuildPackageOnAnyBuild = NO;
 				iOSOpenDevCopyOnBuild = NO;
