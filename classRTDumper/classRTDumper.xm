@@ -3,7 +3,7 @@
 #import <mach-o/ldsyms.h>
 #import <mach-o/dyld.h>
 #import "Dumper.h"
-%ctor{
+void __attribute__((constructor)) LoadDumper(){
     //Protocol **objc_copyProtocolList(unsigned int *outCount)
     NSMutableArray* classList=[NSMutableArray array];
     NSMutableArray* protocalList=[NSMutableArray array];
