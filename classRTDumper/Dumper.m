@@ -9,11 +9,13 @@
 
 
 #import "Dumper.h"
+#import "RuntimeUtils.h"
 @implementation Dumper{
     NSArray* classList;
     NSMutableDictionary* dumpedClasses;
     NSArray* ProtocalList;
      NSMutableDictionary* dumpedProtocals;
+     NSArray* CatList;
 }
 +(id)dumper{
     return [[self alloc] init];
@@ -58,10 +60,11 @@
         [curMethodList addEntriesFromDictionary:ProtocalofProtocal];
         [dumpedProtocals setObject:curMethodList forKey:currentProtocalName];
         
-        
+    
     }
     
-    
+    NSLog(@"Start Dumping Categories");
+    CatList=[RuntimeUtils getCategoryList];
     
     NSLog(@"Finished Dumping");
 }
@@ -178,6 +181,7 @@
 -(void)OutPutToPath:(NSString*)Path{
     [dumpedClasses writeToFile:[Path stringByAppendingString:@"/Classes.plist"] atomically:YES];
     [dumpedProtocals writeToFile:[Path stringByAppendingString:@"/Protocals.plist"]  atomically:YES];
+    [CatList writeToFile:[Path stringByAppendingString:@"/Categories.plist"]  atomically:YES];
     
 }
 @end

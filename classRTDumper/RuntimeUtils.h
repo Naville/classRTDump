@@ -12,4 +12,5 @@
 @interface RuntimeUtils : NSObject
 +(NSData*)dataForSegmentName:(NSString*)Segname SectName:(NSString*)SectName;
 +(NSMutableArray*)getProtocalList;
++(NSMutableArray*)getCategoryList;
 @end
