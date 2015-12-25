@@ -61,8 +61,12 @@
     for(int i=0;i<size;i++){
         struct category_t * Cur=ClassList[i];
         
-        NSString* className=[NSString stringWithUTF8String:Cur->name];
-        [ReturnArray addObject:className];
+        NSString* catName=[NSString stringWithUTF8String:Cur->name];
+        NSString* className=NSStringFromClass(Cur->cls);
+        [ReturnArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:className,catName,nil]];
+        
+        
+        
     }
     
     return ReturnArray;

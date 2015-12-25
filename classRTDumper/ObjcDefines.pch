@@ -200,7 +200,7 @@ struct category_t
     struct class_t * cls;               // struct class_t * (32-bit pointer)
     struct method_list_t * instanceMethods;   // struct method_list_t * (32-bit pointer)
     struct method_list_t * classMethods;      // struct method_list_t * (32-bit pointer)
-    struct method_list_t * protocols;         // struct protocol_list_t * (32-bit pointer)
+    struct protocol_list_t * protocols;         // struct protocol_list_t * (32-bit pointer)
     struct objc_property_list * instanceProperties; // struct objc_property_list * (32-bit pointer)
 };
 
