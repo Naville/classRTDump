@@ -8,6 +8,7 @@
 
 #ifndef ObjcDefines_pch
 #define ObjcDefines_pch
+
 struct objc_image_info
 {
     uint32_t version;
@@ -111,75 +112,7 @@ struct objc_method_description_list_t
 
 //--------------------- ObjC2 32bit ----------------------------------------
 
-struct class_ro_t
-{
-    uint32_t flags;
-    uint32_t instanceStart;
-    uint32_t instanceSize;
-    uint32_t ivarLayout;        // const uint8_t * (32-bit pointer)
-    uint32_t name;              // const char * (32-bit pointer)
-    uint32_t baseMethods;       // const method_list_t * (32-bit pointer)
-    uint32_t baseProtocols;     // const protocol_list_t * (32-bit pointer)
-    uint32_t ivars;             // const ivar_list_t * (32-bit pointer)
-    uint32_t weakIvarLayout;    // const uint8_t * (32-bit pointer)
-    uint32_t baseProperties;    // const struct objc_property_list * (32-bit pointer)
-};
-struct class_t
-{
-    struct class_t * isa;               // class_t * (32-bit pointer)
-    uint32_t superclass;        // class_t * (32-bit pointer)
-    uint32_t cache;             // Cache (32-bit pointer)
-    uint32_t vtable;            // IMP * (32-bit pointer)
-    struct class_ro_t * data;              // class_ro_t * (32-bit pointer)
-};
 
-struct method_t
-{
-    uint32_t name;              // SEL (32-bit pointer)
-    uint32_t types;             // const char * (32-bit pointer)
-    uint32_t imp;               // IMP (32-bit pointer)
-};
-
-struct method_list_t
-{
-    uint32_t entsize;
-    uint32_t count;
-    //struct method_t first;  These structures follow inline
-};
-
-struct ivar_list_t
-{
-    uint32_t entsize;
-    uint32_t count;
-    // struct ivar_t first;  These structures follow inline
-};
-
-struct ivar_t
-{
-    uint32_t offset;            // uintptr_t * (32-bit pointer)
-    uint32_t name;              // const char * (32-bit pointer)
-    uint32_t type;              // const char * (32-bit pointer)
-    uint32_t alignment;
-    uint32_t size;
-};
-
-struct protocol_list_t
-{
-    uint32_t count;             // uintptr_t (a 32-bit value)
-    // struct protocol_t * list[0];  These pointers follow inline
-};
-
-struct protocol_t
-{
-    uint32_t isa;               // id * (32-bit pointer)
-    uint32_t name;              // const char * (32-bit pointer)
-    uint32_t protocols;         // struct protocol_list_t * (32-bit pointer)
-    uint32_t instanceMethods;		// method_list_t * (32-bit pointer)
-    uint32_t classMethods;      // method_list_t * (32-bit pointer)
-    uint32_t optionalInstanceMethods;	// method_list_t * (32-bit pointer)
-    uint32_t optionalClassMethods;	// method_list_t * (32-bit pointer)
-    uint32_t instanceProperties;	// struct objc_property_list * (32-bit pointer)
-};
 
 struct objc_property_list
 {
@@ -188,21 +121,6 @@ struct objc_property_list
     // struct objc_property first;  These structures follow inline
 };
 
-struct objc_property
-{
-    uint32_t name;              // const char * (32-bit pointer)
-    uint32_t attributes;        // const char * (32-bit pointer)
-};
-
-struct category_t
-{
-    const char * name;              // const char * (32-bit pointer)
-    struct class_t * cls;               // struct class_t * (32-bit pointer)
-    struct method_list_t * instanceMethods;   // struct method_list_t * (32-bit pointer)
-    struct method_list_t * classMethods;      // struct method_list_t * (32-bit pointer)
-    struct protocol_list_t * protocols;         // struct protocol_list_t * (32-bit pointer)
-    struct objc_property_list * instanceProperties; // struct objc_property_list * (32-bit pointer)
-};
 
 struct message_ref
 {

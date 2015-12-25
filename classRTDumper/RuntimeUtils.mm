@@ -15,8 +15,10 @@
 #import <mach/mach.h>
 #import <mach/vm_map.h>
 #import <dlfcn.h>
+#import <objc/runtime.h>
 #import <TargetConditionals.h>
 #import "ObjcDefines.pch"
+#import "Bridge.mm"
 #define Arch64Base 0x100000000
 #define Arch32Base 0
 @implementation RuntimeUtils
@@ -62,8 +64,14 @@
         struct category_t * Cur=ClassList[i];
         
         NSString* catName=[NSString stringWithUTF8String:Cur->name];
-        NSString* className=NSStringFromClass(Cur->cls);
-        [ReturnArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:className,catName,nil]];
+        NSString* className=NSStringFromClass((Class)Cur->cls);
+    
+        struct method_list_t *classMethList=Cur->classMethods;
+        struct method_list_t *InstMethList=Cur->instanceMethods;
+       
+          [ReturnArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:className,catName,methodList(classMethList),@"ClassMethod", methodList(InstMethList),@"InstanceMethod",nil]];
+
+        
         
         
         
@@ -92,10 +100,10 @@
 #endif
     }
 
-+(NSData*)dataFromAddress:(unsigned long long)address length:(unsigned long long)length{
+/*+(NSData*)dataFromAddress:(unsigned long long)address length:(unsigned long long)length{
     NSData* returnData;
 //#ifdef TARGET_OS_IPHONE
-    pointer_t buf;
+    void* buf;
     uint32_t sz;
     
     task_t task;
@@ -116,6 +124,6 @@
     
 //#endif
     return returnData;
-}
+}*/
 
 @end

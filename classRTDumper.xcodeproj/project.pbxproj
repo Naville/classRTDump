@@ -3,16 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		FA0C62181C2C83A4005FE67E /* RuntimeUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = FA0C62161C2C83A4005FE67E /* RuntimeUtils.h */; };
-		FA0C62191C2C83A4005FE67E /* RuntimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0C62171C2C83A4005FE67E /* RuntimeUtils.m */; };
+		FA0C62191C2C83A4005FE67E /* RuntimeUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA0C62171C2C83A4005FE67E /* RuntimeUtils.mm */; };
 		FA0C62381C2C8E59005FE67E /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0C62341C2C8E59005FE67E /* Base64.m */; };
 		FA0C62391C2C8E59005FE67E /* Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = FA0C62351C2C8E59005FE67E /* Base64.h */; };
 		FA0C623A1C2C8E59005FE67E /* CocoaSecurity.h in Headers */ = {isa = PBXBuildFile; fileRef = FA0C62361C2C8E59005FE67E /* CocoaSecurity.h */; };
 		FA0C623B1C2C8E59005FE67E /* CocoaSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0C62371C2C8E59005FE67E /* CocoaSecurity.m */; };
+		FA0C629B1C2CCD11005FE67E /* objcStructs.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA0C629A1C2CCD11005FE67E /* objcStructs.mm */; };
+		FA0CC0511C2CCEEE00C736A9 /* Bridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA0CC0501C2CCEEE00C736A9 /* Bridge.mm */; };
 		FA34C8781C2A24780023A649 /* Dumper.h in Headers */ = {isa = PBXBuildFile; fileRef = FA34C8761C2A24780023A649 /* Dumper.h */; };
 		FA34C8791C2A24780023A649 /* Dumper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA34C8771C2A24780023A649 /* Dumper.m */; };
 		FA4DE18A1C2A211300285845 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4DE1891C2A211300285845 /* Foundation.framework */; };
@@ -21,13 +23,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FA0C62151C2C8215005FE67E /* ObjcDefines.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjcDefines.pch; sourceTree = "<group>"; };
+		FA0C62151C2C8215005FE67E /* ObjcDefines.pch */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; path = ObjcDefines.pch; sourceTree = "<group>"; };
 		FA0C62161C2C83A4005FE67E /* RuntimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuntimeUtils.h; sourceTree = "<group>"; };
-		FA0C62171C2C83A4005FE67E /* RuntimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuntimeUtils.m; sourceTree = "<group>"; };
+		FA0C62171C2C83A4005FE67E /* RuntimeUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RuntimeUtils.mm; sourceTree = "<group>"; };
 		FA0C62341C2C8E59005FE67E /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		FA0C62351C2C8E59005FE67E /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		FA0C62361C2C8E59005FE67E /* CocoaSecurity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaSecurity.h; sourceTree = "<group>"; };
 		FA0C62371C2C8E59005FE67E /* CocoaSecurity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CocoaSecurity.m; sourceTree = "<group>"; };
+		FA0C625E1C2CCBB0005FE67E /* dyld_priv.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dyld_priv.h; sourceTree = "<group>"; };
+		FA0C629A1C2CCD11005FE67E /* objcStructs.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = objcStructs.mm; sourceTree = "<group>"; };
+		FA0CC0501C2CCEEE00C736A9 /* Bridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Bridge.mm; sourceTree = "<group>"; };
 		FA34C8761C2A24780023A649 /* Dumper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dumper.h; sourceTree = "<group>"; };
 		FA34C8771C2A24780023A649 /* Dumper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dumper.m; sourceTree = "<group>"; };
 		FA4DE1861C2A211300285845 /* classRTDumper.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = classRTDumper.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,12 +101,15 @@
 			isa = PBXGroup;
 			children = (
 				FA0C62151C2C8215005FE67E /* ObjcDefines.pch */,
+				FA0C625E1C2CCBB0005FE67E /* dyld_priv.h */,
 				FA4DE1931C2A211300285845 /* classRTDumper.xm */,
 				FA4DE1941C2A211300285845 /* classRTDumper.mm */,
 				FA34C8761C2A24780023A649 /* Dumper.h */,
 				FA34C8771C2A24780023A649 /* Dumper.m */,
 				FA0C62161C2C83A4005FE67E /* RuntimeUtils.h */,
-				FA0C62171C2C83A4005FE67E /* RuntimeUtils.m */,
+				FA0C62171C2C83A4005FE67E /* RuntimeUtils.mm */,
+				FA0C629A1C2CCD11005FE67E /* objcStructs.mm */,
+				FA0CC0501C2CCEEE00C736A9 /* Bridge.mm */,
 				FA0C623C1C2C8E61005FE67E /* Libraries */,
 				FA4DE18C1C2A211300285845 /* Package */,
 				FA4DE1901C2A211300285845 /* Supporting Files */,
@@ -210,7 +218,7 @@
 				};
 			};
 			buildConfigurationList = FA4DE17F1C2A211300285845 /* Build configuration list for PBXProject "classRTDumper" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -260,10 +268,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA0C629B1C2CCD11005FE67E /* objcStructs.mm in Sources */,
 				FA0C62381C2C8E59005FE67E /* Base64.m in Sources */,
 				FA34C8791C2A24780023A649 /* Dumper.m in Sources */,
-				FA0C62191C2C83A4005FE67E /* RuntimeUtils.m in Sources */,
+				FA0C62191C2C83A4005FE67E /* RuntimeUtils.mm in Sources */,
 				FA4DE1951C2A211300285845 /* classRTDumper.mm in Sources */,
+				FA0CC0511C2CCEEE00C736A9 /* Bridge.mm in Sources */,
 				FA0C623B1C2C8E59005FE67E /* CocoaSecurity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,15 +337,22 @@
 		FA4DE19D1C2A211300285845 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_CXX0X_EXTENSIONS = YES;
 				CODE_SIGN_IDENTITY = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "classRTDumper/classRTDumper-Prefix.pch";
 				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/opt/iOSOpenDev/lib,
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-std=c++11",
+					"-stdlib=libc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				iOSOpenDevBuildPackageOnAnyBuild = NO;
@@ -351,15 +368,22 @@
 		FA4DE19E1C2A211300285845 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_CXX0X_EXTENSIONS = YES;
 				CODE_SIGN_IDENTITY = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "classRTDumper/classRTDumper-Prefix.pch";
 				INSTALL_PATH = /Library/MobileSubstrate/DynamicLibraries;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/opt/iOSOpenDev/lib,
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-std=c++11",
+					"-stdlib=libc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				iOSOpenDevBuildPackageOnAnyBuild = NO;
