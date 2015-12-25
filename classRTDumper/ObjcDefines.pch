@@ -1,9 +1,10 @@
-
-
-
-
-//Extracted From MachOView http://sourceforge.net/p/machoview/
-
+//
+//  ObjcDefines.pch
+//  classRTDumper
+//
+//  Created by Zhang Naville on 24/12/2015.
+//
+//
 
 #ifndef ObjcDefines_pch
 #define ObjcDefines_pch
@@ -34,7 +35,7 @@ struct objc_class_t
 {
     uint32_t isa;               // struct objc_class * (32-bit pointer)
     uint32_t super_class;       // struct objc_class * (32-bit pointer)
-    uint32_t name;              // const char * (32-bit pointer)
+    const char * name;              // const char * (32-bit pointer)
     int32_t version;
     int32_t info;
     int32_t instance_size;
@@ -110,15 +111,6 @@ struct objc_method_description_list_t
 
 //--------------------- ObjC2 32bit ----------------------------------------
 
-struct class_t
-{
-    uint32_t isa;               // class_t * (32-bit pointer)
-    uint32_t superclass;        // class_t * (32-bit pointer)
-    uint32_t cache;             // Cache (32-bit pointer)
-    uint32_t vtable;            // IMP * (32-bit pointer)
-    uint32_t data;              // class_ro_t * (32-bit pointer)
-};
-
 struct class_ro_t
 {
     uint32_t flags;
@@ -131,6 +123,14 @@ struct class_ro_t
     uint32_t ivars;             // const ivar_list_t * (32-bit pointer)
     uint32_t weakIvarLayout;    // const uint8_t * (32-bit pointer)
     uint32_t baseProperties;    // const struct objc_property_list * (32-bit pointer)
+};
+struct class_t
+{
+    struct class_t * isa;               // class_t * (32-bit pointer)
+    uint32_t superclass;        // class_t * (32-bit pointer)
+    uint32_t cache;             // Cache (32-bit pointer)
+    uint32_t vtable;            // IMP * (32-bit pointer)
+    struct class_ro_t * data;              // class_ro_t * (32-bit pointer)
 };
 
 struct method_t
@@ -171,14 +171,14 @@ struct protocol_list_t
 
 struct protocol_t
 {
-    id * isa;               // id * (32-bit pointer)
-    const char * name;              // const char * (32-bit pointer)
-    struct protocol_list_t * protocols;         // struct protocol_list_t * (32-bit pointer)
-    struct method_list_t * instanceMethods;		// method_list_t * (32-bit pointer)
-    struct method_list_t * classMethods;      // method_list_t * (32-bit pointer)
-    struct method_list_t * optionalInstanceMethods;	// method_list_t * (32-bit pointer)
-    struct method_list_t * optionalClassMethods;	// method_list_t * (32-bit pointer)
-    struct objc_property_list * instanceProperties;	// struct objc_property_list * (32-bit pointer)
+    uint32_t isa;               // id * (32-bit pointer)
+    uint32_t name;              // const char * (32-bit pointer)
+    uint32_t protocols;         // struct protocol_list_t * (32-bit pointer)
+    uint32_t instanceMethods;		// method_list_t * (32-bit pointer)
+    uint32_t classMethods;      // method_list_t * (32-bit pointer)
+    uint32_t optionalInstanceMethods;	// method_list_t * (32-bit pointer)
+    uint32_t optionalClassMethods;	// method_list_t * (32-bit pointer)
+    uint32_t instanceProperties;	// struct objc_property_list * (32-bit pointer)
 };
 
 struct objc_property_list
@@ -196,12 +196,12 @@ struct objc_property
 
 struct category_t
 {
-    uint32_t name;              // const char * (32-bit pointer)
-    uint32_t cls;               // struct class_t * (32-bit pointer)
-    uint32_t instanceMethods;   // struct method_list_t * (32-bit pointer)
-    uint32_t classMethods;      // struct method_list_t * (32-bit pointer)
-    uint32_t protocols;         // struct protocol_list_t * (32-bit pointer)
-    uint32_t instanceProperties; // struct objc_property_list * (32-bit pointer)
+    const char * name;              // const char * (32-bit pointer)
+    struct class_t * cls;               // struct class_t * (32-bit pointer)
+    struct method_list_t * instanceMethods;   // struct method_list_t * (32-bit pointer)
+    struct method_list_t * classMethods;      // struct method_list_t * (32-bit pointer)
+    struct method_list_t * protocols;         // struct protocol_list_t * (32-bit pointer)
+    struct objc_property_list * instanceProperties; // struct objc_property_list * (32-bit pointer)
 };
 
 struct message_ref
@@ -275,13 +275,13 @@ struct protocol64_list_t
 struct protocol64_t
 {
     uint64_t isa;               // id * (64-bit pointer)
-    uint64_t name;              // const char * (64-bit pointer)
-    uint64_t protocols;         // struct protocol_list_t * (64-bit pointer)
-    uint64_t instanceMethods;		// method_list_t * (64-bit pointer)
-    uint64_t classMethods;      // method_list_t * (64-bit pointer)
-    uint64_t optionalInstanceMethods;	// method_list_t * (64-bit pointer)
-    uint64_t optionalClassMethods;	// method_list_t * (64-bit pointer)
-    uint64_t instanceProperties;	// struct objc_property_list * (64-bit pointer)
+    const char * name;              // const char * (64-bit pointer)
+    struct protocol_list_t * protocols;         // struct protocol_list_t * (64-bit pointer)
+    struct method_list_t * instanceMethods;		// method_list_t * (64-bit pointer)
+    struct  method_list_t *classMethods;      // method_list_t * (64-bit pointer)
+    struct  method_list_t * optionalInstanceMethods;	// method_list_t * (64-bit pointer)
+    struct  method_list_t * optionalClassMethods;	// method_list_t * (64-bit pointer)
+    struct objc_property_list * instanceProperties;	// struct objc_property_list * (64-bit pointer)
 };
 
 struct objc_property64_list
@@ -307,7 +307,7 @@ struct category64_t
     uint64_t instanceProperties; // struct objc_property_list * (64-bit pointer)
 };
 
-struct message_ref64 
+struct message_ref64
 {
     uint64_t imp;               // IMP (64-bit pointer)
     uint64_t sel;               // SEL (64-bit pointer)
