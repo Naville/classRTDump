@@ -42,8 +42,9 @@ extern NSArray* BridgedmethodList(struct method_list_t* List);
 }
 +(NSMutableArray*)getProtocalList{
     NSMutableArray* ReturnArray=[NSMutableArray array];
-    unsigned long size;
-    char* Data=getsectdata("__DATA", "__objc_protolist", &size);
+    NSData* segData=[self dataForSegmentName:@"__DATA" SectName:@"__objc_protolist"];
+    const char* Data=(const char*)segData.bytes;
+    unsigned long size=segData.length;
     size=size/sizeof(struct category_t**);
     struct protocol64_t ** ClassList=(struct protocol64_t**)Data;
     for(int i=0;i<size;i++){
@@ -57,8 +58,9 @@ extern NSArray* BridgedmethodList(struct method_list_t* List);
 }
 +(NSMutableArray*)getCategoryList{
     NSMutableArray* ReturnArray=[NSMutableArray array];
-    unsigned long size;
-    char* Data=getsectdata("__DATA", "__objc_catlist", &size);
+    NSData* segData=[self dataForSegmentName:@"__DATA" SectName:@"__objc_catlist"];
+    const char* Data=(const char*)segData.bytes;
+    unsigned long size=segData.length;
     size=size/sizeof(struct category_t**);
     struct category_t** ClassList=(struct category_t**)Data;
     for(int i=0;i<size;i++){

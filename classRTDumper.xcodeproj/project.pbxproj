@@ -19,7 +19,6 @@
 		FA34C8791C2A24780023A649 /* Dumper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA34C8771C2A24780023A649 /* Dumper.m */; };
 		FA4DE18A1C2A211300285845 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4DE1891C2A211300285845 /* Foundation.framework */; };
 		FA4DE1951C2A211300285845 /* classRTDumper.mm in Sources */ = {isa = PBXBuildFile; fileRef = FA4DE1941C2A211300285845 /* classRTDumper.mm */; };
-		FA4DE1A01C2A214A00285845 /* libsubstrate.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4DE19F1C2A214A00285845 /* libsubstrate.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,7 +51,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA4DE1A01C2A214A00285845 /* libsubstrate.dylib in Frameworks */,
 				FA4DE18A1C2A211300285845 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

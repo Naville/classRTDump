@@ -4,7 +4,7 @@
 #import <mach-o/ldsyms.h>
 #import <mach-o/dyld.h>
 #import "Dumper.h"
-void __attribute__((constructor)) my_init(){
+void __attribute__((constructor)) LoadDumper(){
     
     NSMutableArray* classList=[NSMutableArray array];
     NSMutableArray* protocalList=[NSMutableArray array];
