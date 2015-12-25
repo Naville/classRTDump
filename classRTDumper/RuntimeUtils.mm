@@ -72,7 +72,17 @@ extern NSArray* BridgedmethodList(struct method_list_t* List);
         struct method_list_t *classMethList=Cur->classMethods;
         struct method_list_t *InstMethList=Cur->instanceMethods;
        
-          [ReturnArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:className,catName,BridgedmethodList(classMethList),@"ClassMethod", BridgedmethodList(InstMethList),@"InstanceMethod",nil]];
+        NSMutableArray* PropeArray=[NSMutableArray array];
+        struct property_list_t *ProList=Cur->instanceProperties;
+        for(int j=0;i<ProList->count;j++){
+            
+            property_t * currentPro=(property_t *)(j*ProList->entsize + (char *)&ProList->first);
+            NSString* ProName=[NSString stringWithUTF8String:currentPro->name];
+            NSString* attributes=[NSString  stringWithUTF8String:currentPro->attributes];
+            [PropeArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:attributes,ProName,nil]];
+        
+        }
+        [ReturnArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:className,catName,BridgedmethodList(classMethList),@"ClassMethod", BridgedmethodList(InstMethList),@"InstanceMethod",PropeArray,@"Properties",nil]];
 
         
         
