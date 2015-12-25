@@ -19,11 +19,6 @@
 #import "ObjcDefines.pch"
 #define Arch64Base 0x100000000
 #define Arch32Base 0
-#ifdef __LP64__
-struct protocol_t ** (*_getObjc2ProtocolList)(const struct mach_header_64* hi, size_t *count);
-#else
-struct protocol_t ** (*_getObjc2ProtocolList)(const struct mach_header* hi, size_t *count);
-#endif
 @implementation RuntimeUtils
 +(NSData*)dataForSegmentName:(NSString*)Segname SectName:(NSString*)SectName{
     
@@ -60,7 +55,7 @@ struct protocol_t ** (*_getObjc2ProtocolList)(const struct mach_header* hi, size
 +(NSMutableArray*)getCategoryList{
     NSMutableArray* ReturnArray=[NSMutableArray array];
     unsigned long size;
-    char* Data=getsectdata("__DATA", "__objc_protolist", &size);
+    char* Data=getsectdata("__DATA", "__objc_catlist", &size);
     size=size/sizeof(struct category_t**);
     struct category_t** ClassList=(struct category_t**)Data;
     for(int i=0;i<size;i++){
