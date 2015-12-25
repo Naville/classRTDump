@@ -46,6 +46,7 @@ struct protocol_t ** (*_getObjc2ProtocolList)(const struct mach_header* hi, size
     NSMutableArray* ReturnArray=[NSMutableArray array];
     unsigned long size;
     char* Data=getsectdata("__DATA", "__objc_protolist", &size);
+    size=size/sizeof(struct category_t**);
     struct protocol64_t ** ClassList=(struct protocol64_t**)Data;
     for(int i=0;i<size;i++){
     struct protocol64_t * Cur=ClassList[i];
@@ -60,6 +61,7 @@ struct protocol_t ** (*_getObjc2ProtocolList)(const struct mach_header* hi, size
     NSMutableArray* ReturnArray=[NSMutableArray array];
     unsigned long size;
     char* Data=getsectdata("__DATA", "__objc_protolist", &size);
+    size=size/sizeof(struct category_t**);
     struct category_t** ClassList=(struct category_t**)Data;
     for(int i=0;i<size;i++){
         struct category_t * Cur=ClassList[i];
