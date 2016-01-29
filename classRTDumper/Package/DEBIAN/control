@@ -1,6 +1,6 @@
 Package: NavilleZhang.classRTDumper
 Name: classRTDumper
-Version: 2.0-1
+Version: 3.0-1
 Description: 
 Section: System
 Depends: firmware (>= 5.0), mobilesubstrate

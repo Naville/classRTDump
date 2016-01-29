@@ -85,10 +85,10 @@ struct objc_method_list_t
 struct objc_protocol_t
 {
     uint32_t isa;               // struct objc_class * (32-bit pointer)
-    uint32_t protocol_name;     // char * (32-bit pointer)
-    uint32_t protocol_list;     // struct objc_protocol_list * (32-bit pointer)
-    uint32_t instance_methods;	// struct objc_method_description_list * (32-bit pointer)
-    uint32_t class_methods;     // struct objc_method_description_list * (32-bit pointer)
+    char *   name;     // char * (32-bit pointer)
+    struct objc_protocol_list * protocol_list;     // struct objc_protocol_list * (32-bit pointer)
+    struct objc_method_description_list * instance_methods;	// struct objc_method_description_list * (32-bit pointer)
+    struct objc_method_description_list * class_methods;     // struct objc_method_description_list * (32-bit pointer)
 };
 
 struct objc_protocol_list_t

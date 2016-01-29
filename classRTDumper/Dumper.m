@@ -178,8 +178,26 @@
     [ReturnDict setObject:protoList forKey:@"Protocal"];
     return ReturnDict;
 }
+-(void)FixProtocalList{
+ //Cross Compare ProtoMemory List And The ProtoList From dumpedClasses
+    NSMutableDictionary* NewProtoList=[NSMutableDictionary dictionary];
+    for(id x in dumpedClasses){
+        NSArray* ProtoForClass=[x objectForKey:@"Protocal"];
+        for(id y in ProtoForClass){
+            if(![NewProtoList.allKeys containsObject:y]){
+                [NewProtoList setObject:[dumpedProtocals objectForKey:y] forKey:y];
+            }
+        }
+        
+    }
+    [dumpedProtocals removeAllObjects];
+    [dumpedProtocals addEntriesFromDictionary:NewProtoList];
+    
+}
 -(void)OutPutToPath:(NSString*)Path{
     [dumpedClasses writeToFile:[Path stringByAppendingString:@"/Classes.plist"] atomically:YES];
+#error Need Test On FixProtocalList
+    [self FixProtocalList];
     [dumpedProtocals writeToFile:[Path stringByAppendingString:@"/Protocals.plist"]  atomically:YES];
     [CatList writeToFile:[Path stringByAppendingString:@"/Categories.plist"]  atomically:YES];
     

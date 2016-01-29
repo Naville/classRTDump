@@ -45,10 +45,10 @@ extern NSArray* BridgedmethodList(struct method_list_t* List);
     NSData* segData=[self dataForSegmentName:@"__DATA" SectName:@"__objc_protolist"];
     const char* Data=(const char*)segData.bytes;
     unsigned long size=segData.length;
-    size=size/sizeof(struct category_t**);
-    struct protocol64_t ** ClassList=(struct protocol64_t**)Data;
+    size=size/sizeof(struct objc_protocol_t**);
+    struct objc_protocol_t ** ClassList=(struct objc_protocol_t**)Data;
     for(int i=0;i<size;i++){
-    struct protocol64_t * Cur=ClassList[i];
+    struct objc_protocol_t * Cur=ClassList[i];
         
         NSString* className=[NSString stringWithUTF8String:Cur->name];
         [ReturnArray addObject:className];

@@ -17,4 +17,5 @@
 -(void)setupWithClassList:(NSArray*)classList protocalList:(NSArray*)protocalList;
 -(void)startDump;
 -(void)OutPutToPath:(NSString*)Path;
+-(void)FixProtocalList;
 @end
